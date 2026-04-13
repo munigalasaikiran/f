@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nethra Fashion – Boutique Tailor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #8B6914;
+    --deep: #1A0F0A;
+    --cream: #FAF6F0;
+    --warm: #F2EAE0;
+    --blush: #E8D5C8;
+    --text: #2C1A10;
+    --muted: #7A5C48;
+    --border: rgba(201,169,110,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--deep); letter-spacing: 0.03em;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.6rem 1.6rem;
+    border: 1px solid var(--gold); color: var(--gold);
+    background: transparent; cursor: pointer; transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: white; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 4rem;
+    position: relative;
+  }
+  .hero-tag {
+    font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700; line-height: 1.12;
+    color: var(--deep); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 300;
+    line-height: 1.8; color: var(--muted);
+    max-width: 420px; margin-bottom: 3rem;
+  }
+  .hero-btns { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: white;
+    padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: background 0.3s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-dark); }
+  .btn-ghost {
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost::after { content: '→'; }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem; border-top: 0.5px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 600; color: var(--gold);
+  }
+  .stat-label {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.25rem;
+  }
+  .hero-right {
+    background: var(--deep);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-fabric {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent, transparent 2px,
+      rgba(201,169,110,0.06) 2px, rgba(201,169,110,0.06) 4px
+    );
+  }
+  .hero-ornament {
+    position: relative; z-index: 2;
+    text-align: center; padding: 3rem;
+  }
+  .hero-ornament-ring {
+    width: 280px; height: 280px;
+    border: 1px solid rgba(201,169,110,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; margin: 0 auto 2rem;
+    animation: rotateSlow 20s linear infinite;
+  }
+  .hero-ornament-ring::before {
+    content: '';
+    position: absolute; inset: 15px;
+    border: 0.5px solid rgba(201,169,110,0.2);
+    border-radius: 50%;
+    animation: rotateSlow 15s linear infinite reverse;
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+  .hero-center-text {
+    position: absolute; text-align: center;
+    animation: none;
+  }
+  .hero-center-text .nf {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.15em;
+    display: block;
+  }
+  .hero-center-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(201,169,110,0.6);
+    margin-top: 0.5rem;
+  }
+  .hero-ornament > p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-style: italic;
+    color: rgba(201,169,110,0.7); line-height: 1.7;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-tag::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; color: var(--deep); line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300; color: var(--muted);
+    line-height: 1.8; max-width: 560px;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--warm); }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-header { margin-bottom: 4rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border);
+  }
+  .service-card {
+    background: var(--cream); padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card:hover { background: var(--deep); }
+  .service-card:hover .svc-icon,
+  .service-card:hover .svc-title,
+  .service-card:hover .svc-desc { color: rgba(255,255,255,0.9); }
+  .service-card:hover .svc-num { color: rgba(201,169,110,0.3); }
+  .svc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; font-weight: 700;
+    color: rgba(201,169,110,0.15); position: absolute;
+    top: 1rem; right: 1.5rem; line-height: 1; transition: color 0.3s;
+  }
+  .svc-icon {
+    font-size: 2rem; margin-bottom: 1.2rem; display: block;
+    color: var(--gold); transition: color 0.3s;
+  }
+  .svc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600;
+    color: var(--deep); margin-bottom: 0.75rem; transition: color 0.3s;
+  }
+  .svc-desc {
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+    line-height: 1.7; color: var(--muted); transition: color 0.3s;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-frame {
+    background: var(--deep); height: 480px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 3px,
+      rgba(201,169,110,0.05) 3px, rgba(201,169,110,0.05) 6px
+    );
+  }
+  .about-inner-ornament {
+    position: relative; z-index: 2; text-align: center;
+  }
+  .about-inner-ornament .big-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; font-weight: 700; color: rgba(201,169,110,0.15);
+    line-height: 1; display: block;
+  }
+  .about-inner-ornament .since {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .about-frame-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 160px; height: 160px;
+    border: 2px solid var(--gold); background: var(--cream);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    gap: 0.3rem;
+  }
+  .about-frame-accent .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1;
+  }
+  .about-frame-accent .label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-align: center;
+  }
+  .about-content .section-desc { margin-bottom: 2rem; }
+  .features-list { list-style: none; margin: 2rem 0; }
+  .features-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.8rem 0; border-bottom: 0.5px solid var(--border);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text);
+  }
+  .features-list li::before {
+    content: '✦'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem;
+  }
+
+  /* ── PROCESS ── */
+  .process { background: var(--deep); padding: 6rem 4rem; }
+  .process-inner { max-width: 1200px; margin: 0 auto; }
+  .process .section-title { color: white; }
+  .process .section-tag { color: var(--gold-light); }
+  .process .section-tag::before { background: var(--gold-light); }
+  .process .section-desc { color: rgba(255,255,255,0.5); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 2rem; left: 10%; right: 10%; height: 0.5px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .process-step { padding: 0 2rem; text-align: center; }
+  .step-num {
+    width: 4rem; height: 4rem;
+    border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--gold);
+    background: var(--deep); position: relative; z-index: 1;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 0.75rem;
+  }
+  .step-desc {
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+    line-height: 1.7; color: rgba(255,255,255,0.45);
+  }
+
+  /* ── GALLERY ── */
+  .gallery-section { padding: 6rem 4rem; background: var(--cream); }
+  .gallery-inner { max-width: 1200px; margin: 0 auto; }
+  .gallery-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 220px 220px;
+    gap: 8px;
+  }
+  .g-item {
+    background: var(--deep);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .g-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+  .g-item:nth-child(2) { grid-column: span 4; }
+  .g-item:nth-child(3) { grid-column: span 3; }
+  .g-item:nth-child(4) { grid-column: span 3; }
+  .g-item:nth-child(5) { grid-column: span 4; }
+  .g-item::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0.12;
+  }
+  .g-item:nth-child(1)::before { background: radial-gradient(circle at 30% 70%, var(--gold), transparent 60%); opacity: 0.3; }
+  .g-item:nth-child(2)::before { background: radial-gradient(circle at 70% 30%, #8B1A4A, transparent 60%); opacity: 0.4; }
+  .g-item:nth-child(3)::before { background: radial-gradient(circle at 50% 50%, #1A4A8B, transparent 60%); opacity: 0.4; }
+  .g-item:nth-child(4)::before { background: radial-gradient(circle at 50% 50%, #2D8B1A, transparent 60%); opacity: 0.4; }
+  .g-item:nth-child(5)::before { background: radial-gradient(circle at 30% 70%, #8B4A1A, transparent 60%); opacity: 0.4; }
+  .g-item-pattern {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      60deg, transparent, transparent 4px,
+      rgba(201,169,110,0.06) 4px, rgba(201,169,110,0.06) 5px
+    );
+  }
+  .g-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6); z-index: 2;
+  }
+  .g-item:hover .g-label { color: var(--gold-light); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--warm); padding: 6rem 4rem; }
+  .testi-inner { max-width: 1200px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .testi-card {
+    background: var(--cream); padding: 2.2rem;
+    border-top: 2px solid var(--gold);
+  }
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic;
+    line-height: 1.8; color: var(--text); margin-bottom: 1.5rem;
+  }
+  .testi-quote::before { content: '"'; font-size: 2rem; color: var(--gold); line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; }
+  .testi-author {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--deep); display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold);
+    font-weight: 600; flex-shrink: 0;
+  }
+  .testi-name {
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--deep);
+  }
+  .testi-role { font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+  .testi-stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.1em; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--deep); padding: 6rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: start; max-width: 100%;
+  }
+  .contact-left .section-title { color: white; }
+  .contact-left .section-tag { color: var(--gold-light); }
+  .contact-left .section-tag::before { background: var(--gold-light); }
+  .contact-left .section-desc { color: rgba(255,255,255,0.5); margin-bottom: 3rem; }
+  .contact-info-list { list-style: none; }
+  .contact-info-list li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 0.5px solid rgba(201,169,110,0.15);
+    color: rgba(255,255,255,0.7); font-size: 0.9rem;
+  }
+  .contact-info-list li span:first-child { color: var(--gold); flex-shrink: 0; font-size: 1rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); font-family: 'DM Sans', sans-serif;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(201,169,110,0.25);
+    padding: 0.8rem 1rem; color: white;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--gold); }
+  .form-group textarea { min-height: 110px; resize: vertical; }
+  .form-group select option { background: var(--deep); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-submit {
+    background: var(--gold); color: white; border: none; cursor: pointer;
+    padding: 1rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: background 0.3s; margin-top: 0.5rem; align-self: flex-start;
+  }
+  .btn-submit:hover { background: var(--gold-dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0806; padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--gold-light); font-weight: 700;
+  }
+  .footer-logo span { font-style: italic; }
+  .footer-copy {
+    font-size: 0.78rem; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+  .footer-social { display: flex; gap: 1.5rem; }
+  .footer-social a {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.3s;
+  }
+  .footer-social a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 320px; }
+    .hero-left { padding: 4rem 1.5rem 3rem; }
+    section, .about, .contact-section { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .g-item { grid-column: span 1 !important; grid-row: span 1 !important; min-height: 180px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Nethra <span>Fashion</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Appointment</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Boutique Tailor </div>
+    <h1>Where Fabric<br>Meets <em>Artistry</em></h1>
+    <p class="hero-sub">
+      Crafting exquisite custom garments that celebrate your individuality — from bridal lehengas to everyday elegance, every stitch tells your story.
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#process" class="btn-ghost">Our Process</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2000+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Bridal Outfits</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-fabric"></div>
+    <div class="hero-ornament">
+      <div class="hero-ornament-ring">
+        <div class="hero-center-text">
+          <span class="nf">NF</span>
+          <p>Nethra Fashion</p>
+        </div>
+      </div>
+      <p>"Dressed in confidence,<br>tailored with love."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header fade-in">
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Our <em>Specialities</em></h2>
+      <p class="section-desc">From bridal couture to everyday chic — every garment is made with precision, passion, and a deep love for the craft.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <span class="svc-num">01</span>
+        <span class="svc-icon">✦</span>
+        <div class="svc-title">Bridal & Wedding Wear</div>
+        <p class="svc-desc">Dream bridal lehengas, saree blouses, and reception gowns — crafted to make your special day truly unforgettable.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="svc-num">02</span>
+        <span class="svc-icon">◈</span>
+        <div class="svc-title">Salwar & Churidar Sets</div>
+        <p class="svc-desc">Elegant designer sets with intricate embroidery and embellishments, perfectly fitted to your measurements.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="svc-num">03</span>
+        <span class="svc-icon">❋</span>
+        <div class="svc-title">Blouse Stitching</div>
+        <p class="svc-desc">Expert saree blouse tailoring — from classic cuts to contemporary designer styles, with expert finishing.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="svc-num">04</span>
+        <span class="svc-icon">◉</span>
+        <div class="svc-title">Kurti & Tops</div>
+        <p class="svc-desc">Trendy and comfortable kurtis in any fabric and silhouette, from casual everyday wear to festive occasion looks.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="svc-num">05</span>
+        <span class="svc-icon">✿</span>
+        <div class="svc-title">Alterations & Fitting</div>
+        <p class="svc-desc">Expert alterations to resize, reshape, and restore your beloved garments to their perfect fit.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="svc-num">06</span>
+        <span class="svc-icon">⬡</span>
+        <div class="svc-title">Lehenga & Anarkali</div>
+        <p class="svc-desc">Stunning lehengas and flowy anarkalis for every celebration — weddings, festivals, and special events.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <div class="about-visual fade-in">
+    <div class="about-frame">
+      <div class="about-inner-ornament">
+        <span class="big-n">N</span>
+        <span class="since">Since 2005</span>
+      </div>
+    </div>
+    <div class="about-frame-accent">
+      <span class="num">20+</span>
+      <span class="label">Years of<br>Excellence</span>
+    </div>
+  </div>
+  <div class="about-content fade-in">
+    <div class="section-tag">Our Story</div>
+    <h2 class="section-title">Passion for<br><em>Perfect Fit</em></h2>
+    <p class="section-desc">
+      Nethra Fashion was born from a single belief — every woman deserves to feel extraordinary in what she wears. Founded in 2010, we have grown into one of the most trusted boutique tailors in the city.
+    </p>
+    <ul class="features-list">
+      <li>Master tailors with 20+ years of experience in ethnic and western wear</li>
+      <li>Premium fabrics sourced from the finest mills across India</li>
+      <li>Precise measurements and multiple fitting sessions for perfection</li>
+      <li>On-time delivery guaranteed — especially for weddings and occasions</li>
+      <li>Designs inspired by the latest runway trends, customised for you</li>
+    </ul>
+    <a href="#contact" class="btn-primary">Schedule a Consultation</a>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="fade-in">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">From <em>Vision</em> to Wardrobe</h2>
+      <p class="section-desc">Our four-step process ensures your garment is everything you imagined — and more.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-in">
+        <div class="step-num">01</div>
+        <div class="step-title">Consultation</div>
+        <p class="step-desc">Share your vision, occasion, and style preferences with our expert tailor in a personal session.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">02</div>
+        <div class="step-title">Measurement</div>
+        <p class="step-desc">We take precise measurements to ensure an immaculate fit tailored exactly to your body.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">03</div>
+        <div class="step-title">Crafting</div>
+        <p class="step-desc">Skilled artisans bring your design to life using quality fabrics and meticulous handwork.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">04</div>
+        <div class="step-title">Final Fitting</div>
+        <p class="step-desc">A final fitting session to ensure everything is perfect before your garment goes home with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <div class="gallery-header fade-in">
+      <div>
+        <div class="section-tag">Our Work</div>
+        <h2 class="section-title">The <em>Portfolio</em></h2>
+      </div>
+      <a href="#contact" class="btn-ghost" style="color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.08em; display:flex; align-items:center; gap:0.5rem;">View All Work <span>→</span></a>
+    </div>
+    <div class="gallery-grid fade-in">
+      <div class="g-item">
+        <div class="g-item-pattern"></div>
+        <div class="g-label">Bridal Lehenga</div>
+      </div>
+      <div class="g-item">
+        <div class="g-item-pattern"></div>
+        <div class="g-label">Designer Blouse</div>
+      </div>
+      <div class="g-item">
+        <div class="g-item-pattern"></div>
+        <div class="g-label">Anarkali Suit</div>
+      </div>
+      <div class="g-item">
+        <div class="g-item-pattern"></div>
+        <div class="g-label">Ethnic Kurti</div>
+      </div>
+      <div class="g-item">
+        <div class="g-item-pattern"></div>
+        <div class="g-label">Salwar Set</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testi-inner">
+    <div class="fade-in">
+      <div class="section-tag">What Clients Say</div>
+      <h2 class="section-title">Stories of <em>Delight</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-in">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">My bridal lehenga was absolutely breathtaking. The fitting was perfect and the embroidery was even more beautiful than I had imagined. Nethra Fashion made my wedding day magical.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Priya Reddy</div>
+            <div class="testi-role">Bride, Wedding 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">I've been coming to Nethra Fashion for 5 years now. Every single outfit — from casual kurtis to festive anarkalis — has been stitched to perfection. Truly the best in the city!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sunita Mehta</div>
+            <div class="testi-role">Regular Client</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">The team is so professional and talented. They understood exactly what I wanted for my reception gown and delivered something beyond my expectations. Highly recommended!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Aisha Khan</div>
+            <div class="testi-role">Event Client</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-left fade-in">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Book Your<br><em>Appointment</em></h2>
+    <p class="section-desc">Visit us at our studio or reach out to schedule your personal consultation. We'd love to craft something beautiful for you.</p>
+    <ul class="contact-info-list">
+      <li>
+        <span>◉</span>
+        <span>LIG A-16 AS Rao Nagar Near, KLM Mall, ECIL,<br>Hyderabad, Telangana – 500062</span>
+      </li>
+      <li>
+        <span>☏</span>
+        <span>+91 80080 35764 / +91 98495 63907  </span>
+      </li>
+      <li>
+        <span>✉</span>
+        <span>nethrafashion@gmail.com</span>
+      </li>
+      <li>
+        <span>◷</span>
+        <span>Mon – Sat: 10:00 AM – 8:00 PM<br>Sunday: Holiday </span>
+      </li>
+    </ul>
+  </div>
+  <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Service Required</label>
+      <select>
+        <option value="">Select a service</option>
+        <option>Bridal & Wedding Wear</option>
+        <option>Salwar & Churidar Sets</option>
+        <option>Blouse Stitching</option>
+        <option>Kurti & Tops</option>
+        <option>Lehenga & Anarkali</option>
+        <option>Alterations & Fitting</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Requirements</label>
+      <textarea placeholder="Tell us about your dream outfit, occasion, fabric preferences, budget…"></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Send Message →</button>
+    <div id="form-msg" style="font-size:0.85rem; color:var(--gold-light); margin-top:0.5rem; display:none;">
+      Thank you! We'll get in touch within 24 hours.
+    </div>
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Nethra <span>Fashion</span></div>
+  <div class="footer-copy">© 2025 Nethra Fashion. All rights reserved. | Hyderabad, Telangana</div>
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => msg.style.display = 'none', 5000);
+  }
+</script>
+</body>
+</html>
